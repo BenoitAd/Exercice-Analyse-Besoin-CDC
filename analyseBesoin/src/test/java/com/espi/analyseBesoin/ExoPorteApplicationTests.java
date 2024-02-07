@@ -95,4 +95,19 @@ class ExoPorteApplicationTests {
 		// ALORS la porte ne s'ouvre pas
 		assertEquals(0, porte.getNombreAppelsMéthodeOuvrir());
 	}
+
+	@Test
+	void CasBadgePresenteMaisPorteNeSouvrePas() {
+		// ETANT DONNE un lecteur lié à une porte
+		var lecteur = new LecteurFake();
+		var porte = new PorteSpy();
+		var moteur = new MoteurOuverture(porte);
+
+		// QUAND un badge est présenté
+		lecteur.SimulerPrésentationBadge();
+
+		// ALORS cette porte ne s'ouvre pas
+		assertEquals(0, porte.getNombreAppelsMéthodeOuvrir());
+	}
+
 }
