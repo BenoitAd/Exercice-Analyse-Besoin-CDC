@@ -91,6 +91,21 @@ class ExoPorteApplicationTests {
 	}
 
 	@Test
+	void CasAucunBadgePresente() {
+		// ETANT DONNE un lecteur lié à une porte
+		var lecteur = new LecteurFake();
+		var porte = new PorteSpy();
+		ArrayList <PorteSpy> portes = new ArrayList<PorteSpy>();
+		portes.add(porte);
+		var moteur = new MoteurOuverture(portes);
+
+		// QUAND aucun badge n'est présenté
+
+
+		// ALORS la porte ne s'ouvre pas
+		assertEquals(0, porte.getNombreAppelsMéthodeOuvrir());
+	}
+	@Test
 	public void CasLecteurLieeADeuxPortes() {
 		// ETANT DONNE un lecteur ayant détecté un badge
 		// ET deux porte lui étant liée
