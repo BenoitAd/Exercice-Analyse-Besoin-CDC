@@ -29,7 +29,7 @@ class ExoPorteApplicationTests {
 		moteur.Interroger(lecteur);
 
 		// ALORS cette porte s'ouvre
-		assertEquals(1, porte.getNombreAppelsMéthodeOuvrir());
+		assertEquals(1, porte.getNombreAppelsMethodeOuvrir());
 	}
 
 	@Test
@@ -44,7 +44,7 @@ class ExoPorteApplicationTests {
 		var moteur = new MoteurOuverture(porte);
 
 		// ALORS cette porte ne s'ouvre pas
-		assertEquals(0, porte.NombreAppelsMéthodeOuvrir);
+		assertEquals(0, porte.NombreAppelsMethodeOuvrir);
 	}
 
 	@Test
@@ -60,7 +60,7 @@ class ExoPorteApplicationTests {
 		moteur.Interroger(lecteur);
 
 		// ALORS cette porte ne s'ouvre pas
-		assertEquals(0, porte.NombreAppelsMéthodeOuvrir);
+		assertEquals(0, porte.NombreAppelsMethodeOuvrir);
 	}
 
 	@Test
@@ -79,7 +79,7 @@ class ExoPorteApplicationTests {
 		moteur.Interroger(lecteur);
 
 		// ALORS cette porte s'ouvre une fois
-		assertEquals(1, porte.NombreAppelsMéthodeOuvrir);
+		assertEquals(1, porte.NombreAppelsMethodeOuvrir);
 	}
 
 	@Test
@@ -93,7 +93,7 @@ class ExoPorteApplicationTests {
 
 
 		// ALORS la porte ne s'ouvre pas
-		assertEquals(0, porte.getNombreAppelsMéthodeOuvrir());
+		assertEquals(0, porte.getNombreAppelsMethodeOuvrir());
 	}
 
 	@Test
@@ -107,7 +107,7 @@ class ExoPorteApplicationTests {
 		lecteur.SimulerPrésentationBadge();
 
 		// ALORS cette porte ne s'ouvre pas
-		assertEquals(0, porte.getNombreAppelsMéthodeOuvrir());
+		assertEquals(0, porte.getNombreAppelsMethodeOuvrir());
 	}
 
 }
