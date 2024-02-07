@@ -82,4 +82,17 @@ class ExoPorteApplicationTests {
 		assertEquals(1, porte.NombreAppelsMéthodeOuvrir);
 	}
 
+	@Test
+	void CasAucunBadgePresente() {
+		// ETANT DONNE un lecteur lié à une porte
+		var lecteur = new LecteurFake();
+		var porte = new PorteSpy();
+		var moteur = new MoteurOuverture(porte);
+
+		// QUAND aucun badge n'est présenté
+
+
+		// ALORS la porte ne s'ouvre pas
+		assertEquals(0, porte.getNombreAppelsMéthodeOuvrir());
+	}
 }
