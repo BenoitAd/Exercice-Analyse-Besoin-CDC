@@ -3,20 +3,14 @@ package com.espi.analyseBesoin.utilities;
 import com.espi.analyseBesoin.ControleAccess.IPorte;
 
 public class PorteSpy implements IPorte {
-    public int getNombreAppelsMethodeOuvrir() {
-        return NombreAppelsMethodeOuvrir;
+    public int getNombreAppelsMéthodeOuvrir() {
+        return NombreAppelsMéthodeOuvrir;
     }
 
-    public void setNombreAppelsMethodeOuvrir(int nombreAppelsMethodeOuvrir) {
-        NombreAppelsMethodeOuvrir = nombreAppelsMethodeOuvrir;
-    }
-
-    public int NombreAppelsMethodeOuvrir;
-
-
+    public int NombreAppelsMéthodeOuvrir;
 
     public void Ouvrir()
     {
-        NombreAppelsMethodeOuvrir++;
+        NombreAppelsMéthodeOuvrir++;
     }
 }
