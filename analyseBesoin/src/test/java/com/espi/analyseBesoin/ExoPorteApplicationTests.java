@@ -6,6 +6,8 @@ import com.espi.analyseBesoin.utilities.PorteSpy;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.ArrayList;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
@@ -23,7 +25,9 @@ class ExoPorteApplicationTests {
 		lecteur.SimulerPrésentationBadge();
 
 		var porte = new PorteSpy();
-		var moteur = new MoteurOuverture(porte);
+		ArrayList <PorteSpy> portes = new ArrayList<PorteSpy>();
+		portes.add(porte);
+		var moteur = new MoteurOuverture(portes);
 
 		// QUAND le moteur d'ouverture interroge ce lecteur
 		moteur.Interroger(lecteur);
@@ -41,7 +45,8 @@ class ExoPorteApplicationTests {
 		lecteur.SimulerPrésentationBadge();
 
 		var porte = new PorteSpy();
-		var moteur = new MoteurOuverture(porte);
+		ArrayList <PorteSpy> portes = new ArrayList<PorteSpy>();
+		var moteur = new MoteurOuverture(portes);
 
 		// ALORS cette porte ne s'ouvre pas
 		assertEquals(0, porte.NombreAppelsMéthodeOuvrir);
@@ -54,7 +59,8 @@ class ExoPorteApplicationTests {
 		// ET une porte lui étant liée
 		var lecteur = new LecteurFake();
 		var porte = new PorteSpy();
-		var moteur = new MoteurOuverture(porte);
+		ArrayList <PorteSpy> portes = new ArrayList<PorteSpy>();
+		var moteur = new MoteurOuverture(portes);
 
 		// QUAND le moteur d'ouverture interroge ce lecteur
 		moteur.Interroger(lecteur);
@@ -72,7 +78,9 @@ class ExoPorteApplicationTests {
 		lecteur.SimulerPrésentationBadge();
 
 		var porte = new PorteSpy();
-		var moteur = new MoteurOuverture(porte);
+		ArrayList <PorteSpy> portes = new ArrayList<PorteSpy>();
+		portes.add(porte);
+		var moteur = new MoteurOuverture(portes);
 
 		// QUAND le moteur d'ouverture interroge ce lecteur deux fois
 		moteur.Interroger(lecteur);
@@ -80,6 +88,28 @@ class ExoPorteApplicationTests {
 
 		// ALORS cette porte s'ouvre une fois
 		assertEquals(1, porte.NombreAppelsMéthodeOuvrir);
+	}
+
+	@Test
+	public void CasLecteurLieeADeuxPortes() {
+		// ETANT DONNE un lecteur ayant détecté un badge
+		// ET deux porte lui étant liée
+		var lecteur = new LecteurFake();
+		lecteur.SimulerPrésentationBadge();
+
+		var porte1 = new PorteSpy();
+		var porte2 = new PorteSpy();
+		ArrayList<PorteSpy> portes = new ArrayList<PorteSpy>();
+		portes.add(porte1);
+		portes.add(porte2);
+		var moteur1 = new MoteurOuverture(portes);
+
+		// QUAND le moteur d'ouverture interroge ce lecteur
+		moteur1.Interroger(lecteur);
+
+		// ALORS les deux portes s'ouvrent
+		assertEquals(1, porte1.getNombreAppelsMéthodeOuvrir());
+		assertEquals(1, porte2.getNombreAppelsMéthodeOuvrir());
 	}
 
 }

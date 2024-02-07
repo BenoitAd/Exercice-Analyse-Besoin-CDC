@@ -7,13 +7,7 @@ public class PorteSpy implements IPorte {
         return NombreAppelsMéthodeOuvrir;
     }
 
-    public void setNombreAppelsMéthodeOuvrir(int nombreAppelsMéthodeOuvrir) {
-        NombreAppelsMéthodeOuvrir = nombreAppelsMéthodeOuvrir;
-    }
-
     public int NombreAppelsMéthodeOuvrir;
-
-
 
     public void Ouvrir()
     {
