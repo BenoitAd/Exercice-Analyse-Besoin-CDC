@@ -24,7 +24,7 @@ class ExoPorteApplicationTests {
 		// ET une porte lui étant liée
 		BadgeFake badge = new BadgeFake();
 		var lecteur = new LecteurFake(badge);
-		lecteur.SimulerPrésentationBadge();
+		lecteur.SimulerPresentationBadge();
 
 		var porte = new PorteSpy();
 		ArrayList <PorteSpy> portes = new ArrayList<PorteSpy>();
@@ -45,7 +45,7 @@ class ExoPorteApplicationTests {
 		// ET une porte lui étant liée
 		BadgeFake badge = new BadgeFake();
 		var lecteur = new LecteurFake(badge);
-		lecteur.SimulerPrésentationBadge();
+		lecteur.SimulerPresentationBadge();
 
 		var porte = new PorteSpy();
 		ArrayList <PorteSpy> portes = new ArrayList<PorteSpy>();
@@ -80,7 +80,7 @@ class ExoPorteApplicationTests {
 		// ET une porte lui étant liée
 		BadgeFake badge = new BadgeFake();
 		var lecteur = new LecteurFake(badge);
-		lecteur.SimulerPrésentationBadge();
+		lecteur.SimulerPresentationBadge();
 
 		var porte = new PorteSpy();
 		ArrayList <PorteSpy> portes = new ArrayList<PorteSpy>();
@@ -117,7 +117,7 @@ class ExoPorteApplicationTests {
 		// ET deux porte lui étant liée
 		BadgeFake badge = new BadgeFake();
 		var lecteur = new LecteurFake(badge);
-		lecteur.SimulerPrésentationBadge();
+		lecteur.SimulerPresentationBadge();
 
 		var porte1 = new PorteSpy();
 		var porte2 = new PorteSpy();
@@ -140,7 +140,7 @@ class ExoPorteApplicationTests {
 		// ET une porte lui étant liée
 		/*var badge = new BadgeFake();
 		/var lecteur = new LecteurFake(badge);
-		lecteur.SimulerPrésentationBadge();
+		lecteur.SimulerPresentationBadge();
 
 		var porte = new PorteSpy();
 		ArrayList<PorteSpy> portes = new ArrayList<PorteSpy>();
@@ -152,8 +152,9 @@ class ExoPorteApplicationTests {
 		lecteur.getBadge().debloquer();
 		moteur.Interroger(lecteur);
 
-		// ALORS cette porte s'ouvre
-		assertEquals(1, porte.getNombreAppelsMéthodeOuvrir()); */
+		// ALORS cette porte s'ouvre*/
+		var porte = new PorteSpy();
+		assertEquals(1, porte.getNombreAppelsMéthodeOuvrir());
 
 	}
 

@@ -23,9 +23,9 @@ public class LecteurFake implements ILecteur {
         _badgeDétectéAuProchainAppel = false;
         return réponse;
     }
+    boolean _badgeDetecteAuProchainAppel;
 
-    public void SimulerPrésentationBadge()
-    {
+    public void SimulerPresentationBadge() {
         _badgeDétectéAuProchainAppel = true;
     }
 
