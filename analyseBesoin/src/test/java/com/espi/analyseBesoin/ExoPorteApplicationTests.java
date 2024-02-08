@@ -1,8 +1,8 @@
 package com.espi.analyseBesoin;
 
 import com.espi.analyseBesoin.ControleAccess.Badge;
+import com.espi.analyseBesoin.ControleAccess.IPorte;
 import com.espi.analyseBesoin.ControleAccess.MoteurOuverture;
-
 import com.espi.analyseBesoin.utilities.LecteurFake;
 import com.espi.analyseBesoin.utilities.PorteSpy;
 import org.junit.jupiter.api.Test;
@@ -28,9 +28,7 @@ class ExoPorteApplicationTests {
 		lecteur.SimulerPresentationBadge();
 
 		var porte = new PorteSpy();
-		ArrayList <PorteSpy> portes = new ArrayList<PorteSpy>();
-		portes.add(porte);
-		var moteur = new MoteurOuverture(portes);
+		var moteur = new MoteurOuverture(porte);
 
 		// QUAND le moteur d'ouverture interroge ce lecteur
 		moteur.Interroger(lecteur);
@@ -50,8 +48,8 @@ class ExoPorteApplicationTests {
 
 		// QUAND aucun badge n'est présenté
 		var porte = new PorteSpy();
-		ArrayList <PorteSpy> portes = new ArrayList<PorteSpy>();
-		var moteur = new MoteurOuverture(portes);
+		ArrayList <IPorte> portes = new ArrayList<>();
+		var moteur = new MoteurOuverture(porte);
 
 		// ALORS cette porte ne s'ouvre pas
 		assertEquals(0, porte.NombreAppelsMéthodeOuvrir);
@@ -65,8 +63,7 @@ class ExoPorteApplicationTests {
 		Badge badge = new Badge();
 		var lecteur = new LecteurFake(badge);
 		var porte = new PorteSpy();
-		ArrayList <PorteSpy> portes = new ArrayList<PorteSpy>();
-		var moteur = new MoteurOuverture(portes);
+		var moteur = new MoteurOuverture(porte);
 
 		// QUAND le moteur d'ouverture interroge ce lecteur
 		moteur.Interroger(lecteur);
@@ -85,9 +82,7 @@ class ExoPorteApplicationTests {
 		lecteur.SimulerPresentationBadge();
 
 		var porte = new PorteSpy();
-		ArrayList <PorteSpy> portes = new ArrayList<PorteSpy>();
-		portes.add(porte);
-		var moteur = new MoteurOuverture(portes);
+		var moteur = new MoteurOuverture(porte);
 
 		// QUAND le moteur d'ouverture interroge ce lecteur deux fois
 		moteur.Interroger(lecteur);
@@ -103,9 +98,7 @@ class ExoPorteApplicationTests {
 		Badge badge = new Badge();
 		var lecteur = new LecteurFake(badge);
 		var porte = new PorteSpy();
-		ArrayList <PorteSpy> portes = new ArrayList<PorteSpy>();
-		portes.add(porte);
-		var moteur = new MoteurOuverture(portes);
+		var moteur = new MoteurOuverture(porte);
 
 		// QUAND aucun badge n'est présenté
 
@@ -123,9 +116,7 @@ class ExoPorteApplicationTests {
 
 		var porte1 = new PorteSpy();
 		var porte2 = new PorteSpy();
-		ArrayList<PorteSpy> portes = new ArrayList<PorteSpy>();
-		portes.add(porte1);
-		portes.add(porte2);
+		IPorte[] portes = { porte1, porte2 };
 		var moteur1 = new MoteurOuverture(portes);
 
 		// QUAND le moteur d'ouverture interroge ce lecteur
@@ -145,9 +136,7 @@ class ExoPorteApplicationTests {
 		lecteur.SimulerPresentationBadge();
 
 		var porte = new PorteSpy();
-		ArrayList<PorteSpy> portes = new ArrayList<PorteSpy>();
-		portes.add(porte);
-		var moteur = new MoteurOuverture(portes);
+		var moteur = new MoteurOuverture(porte);
 
 		// QUAND un badge est bloqué puis débloqué est présenté
 		badge.bloquer();
@@ -168,9 +157,7 @@ class ExoPorteApplicationTests {
 		lecteur.SimulerPresentationBadge();
 
 		var porte = new PorteSpy();
-		ArrayList<PorteSpy> portes = new ArrayList<PorteSpy>();
-		portes.add(porte);
-		var moteur = new MoteurOuverture(portes);
+		var moteur = new MoteurOuverture(porte);
 
 		// QUAND un badge est bloqué est présenté
 		// ET que ce lecteur est interrogé

@@ -1,21 +1,21 @@
 package com.espi.analyseBesoin.ControleAccess;
 
-import com.espi.analyseBesoin.utilities.PorteSpy;
+import com.espi.analyseBesoin.ControleAccess.IPorte;
 
 import java.util.ArrayList;
 
 public class MoteurOuverture implements IPorte, ILecteur {
-    private ArrayList<PorteSpy> porte ;
+    private IPorte[] portes;
 
-    public MoteurOuverture(ArrayList<PorteSpy> porte)
-    {
-        this.porte = porte;
+    public MoteurOuverture(IPorte... portes) {
+        this.portes = portes;
     }
 
-    public void Interroger(ILecteur lecteur)
-    {
-        if(lecteur.BadgeDetecte()) {
-            this.porte.forEach(PorteSpy::Ouvrir);
+    public void Interroger(ILecteur lecteur) {
+        if (lecteur.BadgeDetecte()) {
+            for (IPorte porte : portes) {
+                porte.Ouvrir();
+            }
         }
     }
 
