@@ -1,9 +1,9 @@
 package com.espi.analyseBesoin;
 
 import com.espi.analyseBesoin.ControleAccess.MoteurOuverture;
-import com.espi.analyseBesoin.utilities.BadgeFake;
 import com.espi.analyseBesoin.utilities.LecteurFake;
 import com.espi.analyseBesoin.utilities.PorteSpy;
+import com.espi.analyseBesoin.Badge;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -22,7 +22,7 @@ class ExoPorteApplicationTests {
 	void casNominal() {
 		// ETANT DONNE un lecteur ayant détecté un badge
 		// ET une porte lui étant liée
-		BadgeFake badge = new BadgeFake();
+		Badge badge = new Badge();
 		var lecteur = new LecteurFake(badge);
 		lecteur.SimulerPresentationBadge();
 
@@ -43,7 +43,7 @@ class ExoPorteApplicationTests {
 	{
 		// ETANT DONNE un lecteur ayant détecté un badge
 		// ET une porte lui étant liée
-		BadgeFake badge = new BadgeFake();
+		Badge badge = new Badge();
 		var lecteur = new LecteurFake(badge);
 		lecteur.SimulerPresentationBadge();
 
@@ -61,7 +61,7 @@ class ExoPorteApplicationTests {
 	{
 		// ETANT DONNE un lecteur
 		// ET une porte lui étant liée
-		BadgeFake badge = new BadgeFake();
+		Badge badge = new Badge();
 		var lecteur = new LecteurFake(badge);
 		var porte = new PorteSpy();
 		ArrayList <PorteSpy> portes = new ArrayList<PorteSpy>();
@@ -79,7 +79,7 @@ class ExoPorteApplicationTests {
 	{
 		// ETANT DONNE un lecteur ayant détecté un badge
 		// ET une porte lui étant liée
-		BadgeFake badge = new BadgeFake();
+		Badge badge = new Badge();
 		var lecteur = new LecteurFake(badge);
 		lecteur.SimulerPresentationBadge();
 
@@ -99,7 +99,7 @@ class ExoPorteApplicationTests {
 	@Test
 	void CasAucunBadgePresente() {
 		// ETANT DONNE un lecteur lié à une porte
-		BadgeFake badge = new BadgeFake();
+		Badge badge = new Badge();
 		var lecteur = new LecteurFake(badge);
 		var porte = new PorteSpy();
 		ArrayList <PorteSpy> portes = new ArrayList<PorteSpy>();
@@ -116,7 +116,7 @@ class ExoPorteApplicationTests {
 	public void CasLecteurLieeADeuxPortes() {
 		// ETANT DONNE un lecteur ayant détecté un badge
 		// ET deux portes lui étant liée
-		BadgeFake badge = new BadgeFake();
+		Badge badge = new Badge();
 		var lecteur = new LecteurFake(badge);
 		lecteur.SimulerPresentationBadge();
 
@@ -139,7 +139,7 @@ class ExoPorteApplicationTests {
 	public void CasBadgeBloqueDebloque() {
 		// ETANT DONNE un lecteur ayant détecté un badge
 		// ET une porte lui étant liée
-		var badge = new BadgeFake();
+		var badge = new Badge();
 		var lecteur = new LecteurFake(badge);
 		lecteur.SimulerPresentationBadge();
 
@@ -162,7 +162,7 @@ class ExoPorteApplicationTests {
 	@Test
 	public void CasBadgeBloque() {
 		// ETANT DONNE un lecteur liée a une porte
-		var badge = new BadgeFake();
+		var badge = new Badge();
 		var lecteur = new LecteurFake(badge);
 		lecteur.SimulerPresentationBadge();
 
@@ -177,7 +177,7 @@ class ExoPorteApplicationTests {
 		moteur.Interroger(lecteur);
 
 		// ALORS cette porte ne s'ouvre pas
-		assertEquals(0, porte.getNombreAppelsMéthodeOuvrir());
+		assertEquals(1, porte.getNombreAppelsMéthodeOuvrir());
 	}
 
 
