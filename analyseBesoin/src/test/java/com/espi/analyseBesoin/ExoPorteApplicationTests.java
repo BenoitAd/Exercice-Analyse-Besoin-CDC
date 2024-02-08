@@ -138,8 +138,8 @@ class ExoPorteApplicationTests {
 	public void CasBadgeBloqueDebloque() {
 		// ETANT DONNE un lecteur ayant détecté un badge
 		// ET une porte lui étant liée
-		/*var badge = new BadgeFake();
-		/var lecteur = new LecteurFake(badge);
+		var badge = new BadgeFake();
+		var lecteur = new LecteurFake(badge);
 		lecteur.SimulerPresentationBadge();
 
 		var porte = new PorteSpy();
@@ -152,8 +152,7 @@ class ExoPorteApplicationTests {
 		lecteur.getBadge().debloquer();
 		moteur.Interroger(lecteur);
 
-		// ALORS cette porte s'ouvre*/
-		var porte = new PorteSpy();
+		// ALORS cette porte s'ouvre
 		assertEquals(1, porte.getNombreAppelsMéthodeOuvrir());
 
 	}
