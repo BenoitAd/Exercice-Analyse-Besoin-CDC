@@ -1,6 +1,6 @@
 package com.espi.analyseBesoin.utilities;
 
-import com.espi.analyseBesoin.Badge;
+import com.espi.analyseBesoin.ControleAccess.Badge;
 import com.espi.analyseBesoin.ControleAccess.ILecteur;
 
 public class LecteurFake implements ILecteur {
@@ -18,9 +18,6 @@ public class LecteurFake implements ILecteur {
         _badgeDétectéAuProchainAppel = true;
     }
 
-    public Badge getBadge() {
-        return new Badge();
-    }
     public LecteurFake(Badge badge) {
 
     }

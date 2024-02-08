@@ -1,9 +1,10 @@
 package com.espi.analyseBesoin;
 
+import com.espi.analyseBesoin.ControleAccess.Badge;
 import com.espi.analyseBesoin.ControleAccess.MoteurOuverture;
+
 import com.espi.analyseBesoin.utilities.LecteurFake;
 import com.espi.analyseBesoin.utilities.PorteSpy;
-import com.espi.analyseBesoin.Badge;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -149,14 +150,14 @@ class ExoPorteApplicationTests {
 		var moteur = new MoteurOuverture(portes);
 
 		// QUAND un badge est bloqué puis débloqué est présenté
-		lecteur.getBadge().bloquer();
-		lecteur.getBadge().debloquer();
+		badge.bloquer();
+		badge.debloquer();
 		moteur.Interroger(lecteur);
 
 		// ALORS cette porte s'ouvre
 		assertEquals(1, porte.getNombreAppelsMéthodeOuvrir());
-
 	}
+
 
 
 	@Test
@@ -173,7 +174,7 @@ class ExoPorteApplicationTests {
 
 		// QUAND un badge est bloqué est présenté
 		// ET que ce lecteur est interrogé
-		lecteur.getBadge().bloquer();
+		badge.bloquer();
 		moteur.Interroger(lecteur);
 
 		// ALORS cette porte ne s'ouvre pas
