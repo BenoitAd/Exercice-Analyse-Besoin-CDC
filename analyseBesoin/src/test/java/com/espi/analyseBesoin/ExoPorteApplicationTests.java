@@ -176,5 +176,17 @@ class ExoPorteApplicationTests {
         assertEquals(porteur, badge.getPorteur());
     }
 
+    @Test
+    public void estAttribuePuisDesattribueAUnBadge() {
+        // ETANT donné un Badge ainsi qu'un Porteur
+        String porteur = "porteur";
+        Badge badge = new Badge();
+        // QUAND on associe un porteur à un badge
+        badge.associer(porteur);
+        badge.desassocier();
+        // ALORS ce badge est associé a ce porteur
+        assertEquals("", badge.getPorteur());
+    }
+
 
 }

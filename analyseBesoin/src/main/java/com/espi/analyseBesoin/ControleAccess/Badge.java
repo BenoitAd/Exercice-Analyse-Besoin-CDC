@@ -30,4 +30,9 @@ public class Badge {
     public void associer(String porteur) {
         this.porteur = porteur;
     }
+
+    public void desassocier() {
+        // this.porteur = "";
+    }
+
 }
