@@ -15,159 +15,170 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @SpringBootTest
 class ExoPorteApplicationTests {
 
-	@Test
-	void contextLoads() {
-	}
+    @Test
+    void contextLoads() {
+    }
 
-	@Test
-	void casNominal() {
-		// ETANT DONNE un lecteur ayant détecté un badge
-		// ET une porte lui étant liée
-		Badge badge = new Badge();
-		var lecteur = new LecteurFake(badge);
-		lecteur.SimulerPresentationBadge();
+    @Test
+    void casNominal() {
+        // ETANT DONNE un lecteur ayant détecté un badge
+        // ET une porte lui étant liée
+        Badge badge = new Badge();
+        var lecteur = new LecteurFake(badge);
+        lecteur.SimulerPresentationBadge();
 
-		var porte = new PorteSpy();
-		var moteur = new MoteurOuverture(porte);
+        var porte = new PorteSpy();
+        var moteur = new MoteurOuverture(porte);
 
-		// QUAND le moteur d'ouverture interroge ce lecteur
-		moteur.Interroger(lecteur);
+        // QUAND le moteur d'ouverture interroge ce lecteur
+        moteur.Interroger(lecteur);
 
-		// ALORS cette porte s'ouvre
-		assertEquals(1, porte.getNombreAppelsMéthodeOuvrir());
-	}
+        // ALORS cette porte s'ouvre
+        assertEquals(1, porte.getNombreAppelsMéthodeOuvrir());
+    }
 
-	@Test
-	void CasSansInterrogation()
-	{
-		// ETANT DONNE un lecteur ayant détecté un badge
-		// ET une porte lui étant liée
-		Badge badge = new Badge();
-		var lecteur = new LecteurFake(badge);
-		lecteur.SimulerPresentationBadge();
+    @Test
+    void CasSansInterrogation() {
+        // ETANT DONNE un lecteur ayant détecté un badge
+        // ET une porte lui étant liée
+        Badge badge = new Badge();
+        var lecteur = new LecteurFake(badge);
+        lecteur.SimulerPresentationBadge();
 
-		// QUAND aucun badge n'est présenté
-		var porte = new PorteSpy();
-		ArrayList <IPorte> portes = new ArrayList<>();
-		var moteur = new MoteurOuverture(porte);
+        // QUAND aucun badge n'est présenté
+        var porte = new PorteSpy();
+        ArrayList<IPorte> portes = new ArrayList<>();
+        var moteur = new MoteurOuverture(porte);
 
-		// ALORS cette porte ne s'ouvre pas
-		assertEquals(0, porte.NombreAppelsMéthodeOuvrir);
-	}
+        // ALORS cette porte ne s'ouvre pas
+        assertEquals(0, porte.NombreAppelsMéthodeOuvrir);
+    }
 
-	@Test
-	public void CasSansPrésentation()
-	{
-		// ETANT DONNE un lecteur
-		// ET une porte lui étant liée
-		Badge badge = new Badge();
-		var lecteur = new LecteurFake(badge);
-		var porte = new PorteSpy();
-		var moteur = new MoteurOuverture(porte);
+    @Test
+    public void CasSansPrésentation() {
+        // ETANT DONNE un lecteur
+        // ET une porte lui étant liée
+        Badge badge = new Badge();
+        var lecteur = new LecteurFake(badge);
+        var porte = new PorteSpy();
+        var moteur = new MoteurOuverture(porte);
 
-		// QUAND le moteur d'ouverture interroge ce lecteur
-		moteur.Interroger(lecteur);
+        // QUAND le moteur d'ouverture interroge ce lecteur
+        moteur.Interroger(lecteur);
 
-		// ALORS cette porte ne s'ouvre pas
-		assertEquals(0, porte.NombreAppelsMéthodeOuvrir);
-	}
+        // ALORS cette porte ne s'ouvre pas
+        assertEquals(0, porte.NombreAppelsMéthodeOuvrir);
+    }
 
-	@Test
-	public void CasPrésentationPuisRien()
-	{
-		// ETANT DONNE un lecteur ayant détecté un badge
-		// ET une porte lui étant liée
-		Badge badge = new Badge();
-		var lecteur = new LecteurFake(badge);
-		lecteur.SimulerPresentationBadge();
+    @Test
+    public void CasPrésentationPuisRien() {
+        // ETANT DONNE un lecteur ayant détecté un badge
+        // ET une porte lui étant liée
+        Badge badge = new Badge();
+        var lecteur = new LecteurFake(badge);
+        lecteur.SimulerPresentationBadge();
 
-		var porte = new PorteSpy();
-		var moteur = new MoteurOuverture(porte);
+        var porte = new PorteSpy();
+        var moteur = new MoteurOuverture(porte);
 
-		// QUAND le moteur d'ouverture interroge ce lecteur deux fois
-		moteur.Interroger(lecteur);
-		moteur.Interroger(lecteur);
+        // QUAND le moteur d'ouverture interroge ce lecteur deux fois
+        moteur.Interroger(lecteur);
+        moteur.Interroger(lecteur);
 
-		// ALORS cette porte s'ouvre une fois
-		assertEquals(1, porte.NombreAppelsMéthodeOuvrir);
-	}
+        // ALORS cette porte s'ouvre une fois
+        assertEquals(1, porte.NombreAppelsMéthodeOuvrir);
+    }
 
-	@Test
-	void CasAucunBadgePresente() {
-		// ETANT DONNE un lecteur lié à une porte
-		Badge badge = new Badge();
-		var lecteur = new LecteurFake(badge);
-		var porte = new PorteSpy();
-		var moteur = new MoteurOuverture(porte);
+    @Test
+    void CasAucunBadgePresente() {
+        // ETANT DONNE un lecteur lié à une porte
+        Badge badge = new Badge();
+        var lecteur = new LecteurFake(badge);
+        var porte = new PorteSpy();
+        var moteur = new MoteurOuverture(porte);
 
-		// QUAND aucun badge n'est présenté
+        // QUAND aucun badge n'est présenté
 
 
-		// ALORS la porte ne s'ouvre pas
-		assertEquals(0, porte.getNombreAppelsMéthodeOuvrir());
-	}
-	@Test
-	public void CasLecteurLieeADeuxPortes() {
-		// ETANT DONNE un lecteur ayant détecté un badge
-		// ET deux portes lui étant liée
-		Badge badge = new Badge();
-		var lecteur = new LecteurFake(badge);
-		lecteur.SimulerPresentationBadge();
+        // ALORS la porte ne s'ouvre pas
+        assertEquals(0, porte.getNombreAppelsMéthodeOuvrir());
+    }
 
-		var porte1 = new PorteSpy();
-		var porte2 = new PorteSpy();
-		IPorte[] portes = { porte1, porte2 };
-		var moteur1 = new MoteurOuverture(portes);
+    @Test
+    public void CasLecteurLieeADeuxPortes() {
+        // ETANT DONNE un lecteur ayant détecté un badge
+        // ET deux portes lui étant liée
+        Badge badge = new Badge();
+        var lecteur = new LecteurFake(badge);
+        lecteur.SimulerPresentationBadge();
 
-		// QUAND le moteur d'ouverture interroge ce lecteur
-		moteur1.Interroger(lecteur);
+        var porte1 = new PorteSpy();
+        var porte2 = new PorteSpy();
+        IPorte[] portes = {porte1, porte2};
+        var moteur1 = new MoteurOuverture(portes);
 
-		// ALORS les deux portes s'ouvrent
-		assertEquals(1, porte1.getNombreAppelsMéthodeOuvrir());
-		assertEquals(1, porte2.getNombreAppelsMéthodeOuvrir());
-	}
+        // QUAND le moteur d'ouverture interroge ce lecteur
+        moteur1.Interroger(lecteur);
 
-	@Test
-	public void CasBadgeBloqueDebloque() {
-		// ETANT DONNE un lecteur ayant détecté un badge
-		// ET une porte lui étant liée
-		var badge = new Badge();
-		var lecteur = new LecteurFake(badge);
-		lecteur.SimulerPresentationBadge();
+        // ALORS les deux portes s'ouvrent
+        assertEquals(1, porte1.getNombreAppelsMéthodeOuvrir());
+        assertEquals(1, porte2.getNombreAppelsMéthodeOuvrir());
+    }
 
-		var porte = new PorteSpy();
-		var moteur = new MoteurOuverture(porte);
+    @Test
+    public void CasBadgeBloqueDebloque() {
+        // ETANT DONNE un lecteur ayant détecté un badge
+        // ET une porte lui étant liée
+        var badge = new Badge();
+        var lecteur = new LecteurFake(badge);
+        lecteur.SimulerPresentationBadge();
 
-		// QUAND un badge est bloqué puis débloqué est présenté
-		badge.bloquer();
-		badge.debloquer();
-		moteur.Interroger(lecteur);
+        var porte = new PorteSpy();
+        var moteur = new MoteurOuverture(porte);
 
-		// ALORS cette porte s'ouvre
-		assertEquals(1, porte.getNombreAppelsMéthodeOuvrir());
-	}
+        // QUAND un badge est bloqué puis débloqué est présenté
+        badge.bloquer();
+        badge.debloquer();
+        moteur.Interroger(lecteur);
+
+        // ALORS cette porte s'ouvre
+        assertEquals(1, porte.getNombreAppelsMéthodeOuvrir());
+    }
 
 
+    @Test
+    public void CasBadgeBloque() {
+        // ETANT DONNE un lecteur liée a une porte
+        var badge = new Badge();
+        var lecteur = new LecteurFake(badge);
+        lecteur.SimulerPresentationBadge();
 
-	@Test
-	public void CasBadgeBloque() {
-		// ETANT DONNE un lecteur liée a une porte
-		var badge = new Badge();
-		var lecteur = new LecteurFake(badge);
-		lecteur.SimulerPresentationBadge();
+        var porte = new PorteSpy();
+        var moteur = new MoteurOuverture(porte);
 
-		var porte = new PorteSpy();
-		var moteur = new MoteurOuverture(porte);
+        // QUAND un badge est bloqué est présenté
+        // ET que ce lecteur est interrogé
+        badge.bloquer();
+        moteur.Interroger(lecteur);
 
-		// QUAND un badge est bloqué est présenté
-		// ET que ce lecteur est interrogé
-		badge.bloquer();
-		moteur.Interroger(lecteur);
+        // ALORS cette porte ne s'ouvre pas
+        assertEquals(1, porte.getNombreAppelsMéthodeOuvrir());
+    }
 
-		// ALORS cette porte ne s'ouvre pas
-		assertEquals(1, porte.getNombreAppelsMéthodeOuvrir());
-	}
+    @Test
+    public void casAttribuerBadge() {
+        //ETANT DONNE un Badge associé et un MoteurOuverture
+        var badge = new Badge();
+        var porte1 = new PorteSpy();
+        var porte2 = new PorteSpy();
+        IPorte[] portes = {porte1, porte2};
+        var moteur1 = new MoteurOuverture(portes);
+        //QUAND on associe ce badge à ce MoteurOuverture
+        moteur1.associer(badge);
+        //ALORS ce badge est ajouter au tableau des badges reconnu
+        assertEquals(true, moteur1.possede(badge));
 
+    }
 
 
 }

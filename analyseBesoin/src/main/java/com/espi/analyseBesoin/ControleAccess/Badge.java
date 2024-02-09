@@ -4,6 +4,7 @@ public class Badge {
 
     private boolean isBlocked;
 
+
     public Badge() {
         this.isBlocked = false;
     }
@@ -19,4 +20,6 @@ public class Badge {
     public boolean isBlocked() {
         return this.isBlocked;
     }
+
+
 }

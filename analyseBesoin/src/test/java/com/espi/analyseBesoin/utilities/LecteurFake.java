@@ -4,18 +4,16 @@ import com.espi.analyseBesoin.ControleAccess.Badge;
 import com.espi.analyseBesoin.ControleAccess.ILecteur;
 
 public class LecteurFake implements ILecteur {
-    private boolean _badgeDétectéAuProchainAppel;
-
+    private boolean badgeDetecteAuProchainAppel;
 
     public boolean BadgeDetecte() {
-        var réponse = _badgeDétectéAuProchainAppel;
-        _badgeDétectéAuProchainAppel = false;
-        return réponse;
+        var reponse = badgeDetecteAuProchainAppel;
+        badgeDetecteAuProchainAppel = false;
+        return reponse;
     }
-    boolean _badgeDetecteAuProchainAppel;
 
     public void SimulerPresentationBadge() {
-        _badgeDétectéAuProchainAppel = true;
+        badgeDetecteAuProchainAppel = true;
     }
 
     public LecteurFake(Badge badge) {
