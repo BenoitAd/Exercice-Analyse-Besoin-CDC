@@ -27,7 +27,10 @@ public class Badge {
         return this.porteur;
     }
 
-    public void associer(String porteur) {
+    public void associer(String nouveauPorteur) {
+        if(nouveauPorteur != null) {
+            this.porteur = nouveauPorteur;
+        }
         this.porteur = porteur;
     }
 
