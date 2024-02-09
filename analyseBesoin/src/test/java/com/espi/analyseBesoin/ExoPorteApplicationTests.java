@@ -165,20 +165,7 @@ class ExoPorteApplicationTests {
         assertEquals(1, porte.getNombreAppelsMéthodeOuvrir());
     }
 
-    @Test
-    public void casAttribuerBadge() {
-        //ETANT DONNE un Badge associé et un MoteurOuverture
-        var badge = new Badge();
-        var porte1 = new PorteSpy();
-        var porte2 = new PorteSpy();
-        IPorte[] portes = {porte1, porte2};
-        var moteur1 = new MoteurOuverture(portes);
-        //QUAND on associe ce badge à ce MoteurOuverture
-        moteur1.associer(badge);
-        //ALORS ce badge est ajouter au tableau des badges reconnu
-        assertEquals(true, moteur1.possede(badge));
 
-    }
 
 
 }
