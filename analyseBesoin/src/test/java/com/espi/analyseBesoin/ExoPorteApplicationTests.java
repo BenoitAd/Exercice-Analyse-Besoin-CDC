@@ -165,7 +165,16 @@ class ExoPorteApplicationTests {
         assertEquals(1, porte.getNombreAppelsMéthodeOuvrir());
     }
 
-
+    @Test
+    public void estAttribueAUnBadge() {
+        // ETANT donné un Badge ainsi qu'un Porteur
+        String porteur = "porteur";
+        Badge badge = new Badge();
+        // QUAND on associe un porteur à un badge
+        badge.associer(porteur);
+        // ALORS ce badge est associé a ce porteur
+        assertEquals(porteur, badge.getPorteur());
+    }
 
 
 }
