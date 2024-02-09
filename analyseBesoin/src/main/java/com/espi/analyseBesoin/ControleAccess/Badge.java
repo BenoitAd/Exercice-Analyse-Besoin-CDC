@@ -4,6 +4,8 @@ public class Badge {
 
     private boolean isBlocked;
 
+    private String porteur;
+
 
     public Badge() {
         this.isBlocked = false;
@@ -21,5 +23,11 @@ public class Badge {
         return this.isBlocked;
     }
 
+    public String getPorteur() {
+        return this.porteur;
+    }
 
+    public void associer(String porteur) {
+        this.porteur = porteur;
+    }
 }
