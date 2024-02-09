@@ -181,12 +181,44 @@ class ExoPorteApplicationTests {
         // ETANT donné un Badge ainsi qu'un Porteur
         String porteur = "porteur";
         Badge badge = new Badge();
-        // QUAND on associe un porteur à un badge
+        // QUAND on associe un porteur à un badge et puis je le désassocie
         badge.associer(porteur);
         badge.desassocier();
         // ALORS ce badge est associé a ce porteur
         assertEquals("", badge.getPorteur());
     }
+
+    @Test
+    public void desassociationSansAssociationNeChangePasLeBadge() {
+        // ETANT donné un Badge
+        Badge badge = new Badge();
+
+        // QUAND on tente de désassocier un porteur sans avoir été préalablement associé
+        badge.desassocier();
+
+        // ALORS le porteur associé au badge reste une chaîne vide
+        assertEquals("", badge.getPorteur());
+    }
+
+    @Test
+    public void tentativeAssociationAvecPorteurInvalideNeChangePasLeBadge() {
+        // ETANT donné un Badge ainsi qu'un Porteur
+        String porteurValide = "porteurValide";
+        String porteurInvalide = null;  // Porteur invalide
+
+        Badge badge = new Badge();
+
+        // QUAND on associe un porteur valide à un badge
+        badge.associer(porteurValide);
+
+        // ET qu'on tente d'associer un porteur invalide au badge
+        badge.associer(porteurInvalide);
+
+        // ALORS le porteur associé au badge reste inchangé
+        assertEquals(porteurValide, badge.getPorteur());
+    }
+
+
 
 
 }
