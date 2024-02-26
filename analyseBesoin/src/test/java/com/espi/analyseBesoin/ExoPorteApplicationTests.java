@@ -229,7 +229,7 @@ class ExoPorteApplicationTests {
         badge.desassocier();
 
         // Alors le porteur associé au badge doit être une chaîne vide
-        assertEquals("porteurInvalide", badge.getPorteur());
+        assertEquals("", badge.getPorteur());
     }
 
 
