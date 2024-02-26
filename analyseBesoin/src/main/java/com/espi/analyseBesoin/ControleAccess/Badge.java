@@ -28,11 +28,14 @@ public class Badge {
     }
 
     public void associer(String nouveauPorteur) {
-        if(nouveauPorteur != null) {
+        if (!isBlocked && nouveauPorteur != null) {
             this.porteur = nouveauPorteur;
         }
-        this.porteur = porteur;
+        else if (isBlocked) {
+            this.porteur = "";
+        }
     }
+
 
     public void desassocier() {
         this.porteur = "";
