@@ -218,7 +218,19 @@ class ExoPorteApplicationTests {
         assertEquals(porteurValide, badge.getPorteur());
     }
 
+    @Test
+    public void desassocierBadgeDoitRemettrePorteurAVide() {
+        // Étant donné un Badge associé à un porteur
+        Badge badge = new Badge();
+        String porteur = "porteurValide";
+        badge.associer(porteur);
 
+        // Quand on désassocie le badge
+        badge.desassocier();
+
+        // Alors le porteur associé au badge doit être une chaîne vide
+        assertEquals("porteurInvalide", badge.getPorteur());
+    }
 
 
 }
