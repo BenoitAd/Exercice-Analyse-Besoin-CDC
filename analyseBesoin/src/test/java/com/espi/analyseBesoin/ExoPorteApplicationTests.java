@@ -7,6 +7,9 @@ import com.espi.analyseBesoin.utilities.LecteurFake;
 import com.espi.analyseBesoin.utilities.PorteSpy;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 
 import java.util.ArrayList;
 
@@ -231,6 +234,23 @@ class ExoPorteApplicationTests {
         // Alors le porteur associé au badge doit être une chaîne vide
         assertEquals("", badge.getPorteur());
     }
+
+    @Test
+    public void badgeBloqueNeChangePasAvecNouveauPorteur() {
+        // ETANT DONNE un badge bloqué
+        Badge badge = new Badge();
+        badge.bloquer();
+
+        // QUAND on tente d'associer un nouveau porteur au badge bloqué
+        String nouveauPorteur = "nouveauPorteur";
+        badge.associer(nouveauPorteur);
+
+        // ALORS le badge doit rester bloqué
+        assertTrue(badge.isBlocked());
+        // ET le porteur associé au badge doit rester vide
+        assertEquals("", badge.getPorteur());
+    }
+
 
 
 }
