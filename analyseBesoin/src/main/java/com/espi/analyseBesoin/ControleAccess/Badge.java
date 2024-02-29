@@ -38,7 +38,7 @@ public class Badge {
 
 
     public void desassocier() {
-        //this.porteur = "";
+        this.porteur = "";
     }
 
 }
