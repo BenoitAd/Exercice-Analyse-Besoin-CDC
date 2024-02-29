@@ -12,7 +12,7 @@ public class Badge {
     }
 
     public void bloquer() {
-        this.isBlocked = true;
+        //this.isBlocked = true;
     }
 
     public void debloquer() {
