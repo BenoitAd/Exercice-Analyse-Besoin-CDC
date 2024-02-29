@@ -16,7 +16,7 @@ public class Badge {
     }
 
     public void debloquer() {
-        this.isBlocked = false;
+        //this.isBlocked = false;
     }
 
     public boolean isBlocked() {
