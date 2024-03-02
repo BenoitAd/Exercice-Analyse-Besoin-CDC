@@ -11,6 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -324,5 +325,25 @@ class ExoPorteApplicationTests {
         //Alors le badge est desassocié
         assertNull(badge.getPorteur());
     }
+
+    @Test
+    public void suppressionPorteurSansBadges() {
+        // ÉTANT DONNÉ qu'aucun badge n'est associé au porteur
+        Porteur porteurSansBadges = new Porteur("Nom", "Prenom");
+
+        // QUAND on supprime le porteur
+        porteurSansBadges.supprimer();
+
+        // ALORS aucun badge ne devrait être désassocié, car le porteur n'avait aucun badge.
+        List<Badge> badges = porteurSansBadges.getBadges();
+        assertNotNull(badges, "La liste des badges ne devrait pas être null.");
+        assertTrue(badges.isEmpty(), "Aucun badge ne devrait être désassocié.");
+    }
+
+
+
+
+
+
 
 }
