@@ -1,6 +1,8 @@
 package com.espi.analyseBesoin.ControleAccess;
+import java.util.Observable;
 
-public class Porteur {
+
+public class Porteur extends Observable {
     private String nom;
     private String prenom;
 
@@ -11,6 +13,14 @@ public class Porteur {
 
     public String getPorteurName() {
         return this.nom + " " + this.prenom;
+    }
+
+    public void supprimer() {
+        // Met à jour le statut du porteur (supprimé)
+        this.nom = null;
+        this.prenom = null;
+        setChanged();
+        notifyObservers();
     }
 
 

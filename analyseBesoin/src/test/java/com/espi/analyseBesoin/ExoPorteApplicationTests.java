@@ -173,7 +173,7 @@ class ExoPorteApplicationTests {
         Porteur porteur = new Porteur("nomPorteur", "prenomPorteur");
         Badge badge = new Badge();
         // QUAND on associe un porteur à un badge
-        badge.associer(porteur);
+        badge.associerPorteur(porteur);
         // ALORS ce badge est associé a ce porteur
         assertEquals(porteur.getPorteurName(), badge.getPorteur().getPorteurName());
     }
@@ -184,8 +184,8 @@ class ExoPorteApplicationTests {
         Porteur porteur = new Porteur("nomPorteur", "prenomPorteur");
         Badge badge = new Badge();
         // QUAND on associe un porteur à un badge et puis je le désassocie
-        badge.associer(porteur);
-        badge.desassocier();
+        badge.associerPorteur(porteur);
+        badge.desassocierPorteur();
         // ALORS ce badge est associé a aucun porteur
         assertNull(badge.getPorteur());
     }
@@ -196,7 +196,7 @@ class ExoPorteApplicationTests {
         Badge badge = new Badge();
 
         // QUAND on tente de désassocier un porteur sans avoir été préalablement associé
-        badge.desassocier();
+        badge.desassocierPorteur();
 
         // ALORS le porteur associé au badge reste null
         assertNull(badge.getPorteur());
@@ -211,10 +211,10 @@ class ExoPorteApplicationTests {
         Badge badge = new Badge();
 
         // QUAND on associe un badge à un porteur valide
-        badge.associer(porteurValide);
+        badge.associerPorteur(porteurValide);
 
         // ET qu'on tente d'associer ce même badge a un porteur invalide
-        badge.associer(porteurInvalide);
+        badge.associerPorteur(porteurInvalide);
 
         // ALORS le porteur associé au badge reste inchangé
         assertEquals(porteurValide.getPorteurName(), badge.getPorteur().getPorteurName());
@@ -225,9 +225,9 @@ class ExoPorteApplicationTests {
         // Étant donné un Badge associé à un porteur
         Badge badge = new Badge();
         Porteur porteur = new Porteur("nomPorteur", "prenomPorteur");
-        badge.associer(porteur);
+        badge.associerPorteur(porteur);
         // Quand on désassocie le badge
-        badge.desassocier();
+        badge.desassocierPorteur();
 
         // Alors le porteur associé au badge est null
         assertNull(badge.getPorteur());
@@ -268,7 +268,7 @@ class ExoPorteApplicationTests {
         //QUAND le badge est bloqué
         badge.bloquer();
         //Alors le badge est desassocié au porteur
-        badge.desassocier();
+        badge.desassocierPorteur();
         assertNull(badge.getPorteur());
     }
     @Test
@@ -276,7 +276,7 @@ class ExoPorteApplicationTests {
     {
         //Etant donné un badge desassocier au porteur
         Badge badge = new Badge();
-        badge.desassocier();
+        badge.desassocierPorteur();
         //QUAND le badge n'est pas bloqué
         badge.isBlocked();
         //ALORS le badge doit etre bloquer
@@ -292,7 +292,7 @@ class ExoPorteApplicationTests {
         Badge badge = new Badge();
         Porteur porteur = new Porteur("Nom", "Prenom");
         //Quand le badge est associé au porteur
-        badge.associer(porteur);
+        badge.associerPorteur(porteur);
         //Alors le badge est associé au porteur
         assertEquals( porteur.getPorteurName() , badge.getPorteur().getPorteurName());
     }
@@ -305,8 +305,8 @@ class ExoPorteApplicationTests {
         //Quand le porteur est associé à deux badges
         Badge badge1 = new Badge();
         Badge badge2 = new Badge();
-        badge1.associer(porteur);
-        badge2.associer(porteur);
+        badge1.associerPorteur(porteur);
+        badge2.associerPorteur(porteur);
         //Alors le porteur est associé à deux badges
         assertEquals( porteur.getPorteurName() , badge1.getPorteur().getPorteurName());
         assertEquals( porteur.getPorteurName() , badge2.getPorteur().getPorteurName());
@@ -318,9 +318,9 @@ class ExoPorteApplicationTests {
         //Etant donné un porteur associé à un badge
         Porteur porteur = new Porteur("Nom", "Prenom");
         Badge badge = new Badge();
-        badge.associer(porteur);
+        badge.associerPorteur(porteur);
         //Quand le porteur est supprimé
-        porteur = null;
+        porteur.supprimer();
         //Alors le badge est desassocié
         assertNull(badge.getPorteur());
     }

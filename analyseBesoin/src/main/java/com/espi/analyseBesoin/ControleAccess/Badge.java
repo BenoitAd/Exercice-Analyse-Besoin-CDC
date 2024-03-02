@@ -1,6 +1,9 @@
 package com.espi.analyseBesoin.ControleAccess;
 
-public class Badge {
+import java.util.Observable;
+import java.util.Observer;
+
+public class Badge implements Observer {
 
     private boolean isBlocked;
 
@@ -36,9 +39,10 @@ public class Badge {
         }
     }
 
-    public void associer(Porteur porteur) {
+    public void associerPorteur(Porteur porteur) {
         if (!isBlocked && porteur != null) {
             this.porteur = porteur;
+            porteur.addObserver(this);
         }
         else if (isBlocked) {
             this.porteur = null;
@@ -46,8 +50,19 @@ public class Badge {
     }
 
 
-    public void desassocier() {
-        this.porteur = null;
+    public void desassocierPorteur() {
+        if (porteur != null) {
+            porteur.deleteObserver(this);
+            porteur = null;
+        }
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+        // Mise à jour lorsque le porteur est supprimé
+        if (o instanceof Porteur) {
+            desassocierPorteur();
+        }
     }
 
 }
