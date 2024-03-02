@@ -312,5 +312,17 @@ class ExoPorteApplicationTests {
         assertEquals( porteur.getPorteurName() , badge2.getPorteur().getPorteurName());
     }
 
+    @Test
+    public void supprimerPorteurAssocieAUnBadge()
+    {
+        //Etant donné un porteur associé à un badge
+        Porteur porteur = new Porteur("Nom", "Prenom");
+        Badge badge = new Badge();
+        badge.associer(porteur);
+        //Quand le porteur est supprimé
+        porteur = null;
+        //Alors le badge est desassocié
+        assertNull(badge.getPorteur());
+    }
 
 }
