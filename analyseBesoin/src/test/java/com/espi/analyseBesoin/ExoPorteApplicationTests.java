@@ -359,6 +359,21 @@ class ExoPorteApplicationTests {
         assertNull(badge2.getPorteur());
     }
 
+    @Test
+    public void desassociationPorteurApresSuppression() {
+        // ÉTANT DONNÉ un badge associé à un porteur
+        Badge badge = new Badge();
+        Porteur porteur = new Porteur("Nom", "Prenom");
+        badge.associerPorteur(porteur);
+
+        // QUAND on supprime le porteur
+        porteur.supprimer();
+
+        // ALORS le porteur associé au badge devrait être null
+        assertNull(badge.getPorteur(), "Le porteur associé au badge devrait être null après suppression du porteur.");
+    }
+
+
 
 
 
