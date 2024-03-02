@@ -290,13 +290,27 @@ class ExoPorteApplicationTests {
     {
         //Etant donné un badge associé au porteur
         Badge badge = new Badge();
-        badge.associer("Nom", "Prenom");
+        Porteur porteur = new Porteur("Nom", "Prenom");
         //Quand le badge est associé au porteur
+        badge.associer(porteur);
         //Alors le badge est associé au porteur
-        assertEquals("Nom Prenom", badge.getPorteur().getPorteurName());
+        assertEquals( porteur.getPorteurName() , badge.getPorteur().getPorteurName());
     }
 
-
+    @Test
+    public void porteurAssoicieADeuxBadge()
+    {
+        //Etant donné un porteur
+        Porteur porteur = new Porteur("Nom", "Prenom");
+        //Quand le porteur est associé à deux badges
+        Badge badge1 = new Badge();
+        Badge badge2 = new Badge();
+        badge1.associer(porteur);
+        badge2.associer(porteur);
+        //Alors le porteur est associé à deux badges
+        assertEquals( porteur.getPorteurName() , badge1.getPorteur().getPorteurName());
+        assertEquals( porteur.getPorteurName() , badge2.getPorteur().getPorteurName());
+    }
 
 
 }
