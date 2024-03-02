@@ -4,7 +4,7 @@ public class Badge {
 
     private boolean isBlocked;
 
-    private String porteur;
+    private Porteur porteur;
 
 
     public Badge() {
@@ -23,22 +23,31 @@ public class Badge {
         return this.isBlocked;
     }
 
-    public String getPorteur() {
+    public Porteur getPorteur() {
         return this.porteur;
     }
 
-    public void associer(String nouveauPorteur) {
-        if (!isBlocked && nouveauPorteur != null) {
-            this.porteur = nouveauPorteur;
+    public void associer(String nom, String prenom) {
+        if (!isBlocked && nom != null && prenom != null) {
+            this.porteur = new Porteur(nom, prenom);
         }
         else if (isBlocked) {
-            this.porteur = "";
+            this.porteur = null;
+        }
+    }
+
+    public void associer(Porteur porteur) {
+        if (!isBlocked && porteur != null) {
+            this.porteur = porteur;
+        }
+        else if (isBlocked) {
+            this.porteur = null;
         }
     }
 
 
     public void desassocier() {
-        this.porteur = "";
+        this.porteur = null;
     }
 
 }
