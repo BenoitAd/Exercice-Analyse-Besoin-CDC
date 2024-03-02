@@ -342,6 +342,26 @@ class ExoPorteApplicationTests {
 
 
 
+    @Test
+    public void suppressionPorteurAvecMultiplesBadges() {
+        // ÉTANT DONNÉ un porteur associé à plusieurs badges
+        Porteur porteur = new Porteur("Nom", "Prenom");
+        Badge badge1 = new Badge();
+        Badge badge2 = new Badge();
+        badge1.associerPorteur(porteur);
+        badge2.associerPorteur(porteur);
+
+        // QUAND on supprime le porteur
+        porteur.supprimer();
+
+        // ALORS tous les badges associés à ce porteur devraient être désassociés
+        assertNull(badge1.getPorteur());
+        assertNull(badge2.getPorteur());
+    }
+
+
+
+
 
 
 
