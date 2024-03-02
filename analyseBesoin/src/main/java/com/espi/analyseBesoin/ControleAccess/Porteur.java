@@ -1,4 +1,5 @@
 package com.espi.analyseBesoin.ControleAccess;
+import java.util.Collections;
 import java.util.List;
 import java.util.Observable;
 
@@ -17,7 +18,7 @@ public class Porteur extends Observable {
         return this.nom + " " + this.prenom;
     }
     public List<Badge> getBadges() {
-        return badges;
+        return badges != null ? badges : Collections.emptyList();
     }
 
     public void supprimer() {
