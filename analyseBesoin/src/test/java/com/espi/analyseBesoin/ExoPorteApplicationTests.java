@@ -536,7 +536,23 @@ class ExoPorteApplicationTests {
         //ALORS le badge est débloqué
         assertEquals(false, badge.isBlocked());
     }
-
+    @Test
+    public void desassocie2badgesporteurbloqueles()
+    {
+        //ETANT donné qu'on desassocie deux badges associés au porteur
+        Badge badge1 = new Badge();
+        Badge badge2 = new Badge();
+        Porteur porteur = new Porteur("Jean","dupont");
+        badge1.associerPorteur(porteur);
+        badge2.associerPorteur(porteur);
+        badge1.desassocierPorteur();
+        badge2.desassocierPorteur();
+        //QUAND on supprime le porteur
+        porteur.supprimer();
+        //ALORS les deux badges sont bloqués
+        assertEquals(true,badge1.isBlocked());
+        assertEquals(true, badge2.isBlocked());
+    }
 
 
 }
