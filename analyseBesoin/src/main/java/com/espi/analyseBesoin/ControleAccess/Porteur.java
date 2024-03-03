@@ -23,7 +23,11 @@ public class Porteur extends Observable {
         return badges != null ? badges : Collections.emptyList();
     }
     public void supprimer() {
-        // Met à jour le statut du porteur (supprimé)
+        for (Badge badge : badges) {
+            badge.desassocierPorteur();
+        }
+        badges.clear();
+
         this.nom = null;
         this.prenom = null;
         setChanged();
