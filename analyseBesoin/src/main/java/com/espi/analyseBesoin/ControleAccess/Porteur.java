@@ -8,7 +8,8 @@ import java.util.Observable;
 public class Porteur extends Observable {
     private String nom;
     private String prenom;
-    private List<Badge> badges;
+    private List<Badge> badges = new ArrayList<>();
+    private boolean isBlocked;
 
     public Porteur(String nom, String prenom) {
         this.nom = nom;
@@ -35,7 +36,18 @@ public class Porteur extends Observable {
         badges.add(badge);
     }
 
+    public boolean isBlocked() {
+        return this.isBlocked;
+    }
 
+    public void assignBadge(Badge badge) {
+
+    }
+
+
+    public void blockAllBadges() {
+
+    }
 
 
 }
