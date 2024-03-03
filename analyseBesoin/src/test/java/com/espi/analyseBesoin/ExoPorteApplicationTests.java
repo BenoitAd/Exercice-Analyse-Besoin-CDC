@@ -534,7 +534,7 @@ class ExoPorteApplicationTests {
         //QUAND on essai de le débloquer
         badge.debloquer();
         //ALORS le badge est débloqué
-        assertEquals(true, badge.isBlocked());
+        assertEquals(false, badge.isBlocked());
     }
 
 
