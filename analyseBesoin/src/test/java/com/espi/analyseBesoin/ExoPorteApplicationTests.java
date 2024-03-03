@@ -476,6 +476,52 @@ class ExoPorteApplicationTests {
         assertTrue(badge.isBlocked(), "Le badge devrait rester bloqué.");
     }
 
+    @Test
+    public void desassociationBadgeApresSuppressionPorteurAvecUnSeulBadge() {
+        // ÉTANT DONNÉ un porteur associé à un seul badge
+        Porteur porteur = new Porteur("Nom", "Prenom");
+        Badge badge = new Badge();
+        badge.associerPorteur(porteur);
+
+        // QUAND on supprime le porteur
+        porteur.supprimer();
+
+        // ALORS le badge associé à ce porteur devrait être désassocié
+        assertNull(badge.getPorteur(), "Le badge associé au porteur devrait être null après suppression du porteur.");
+    }
+
+    @Test
+    public void suppressionPorteurListeBadgesVide() {
+        // ÉTANT DONNÉ un porteur associé à plusieurs badges
+        Porteur porteur = new Porteur("Nom", "Prenom");
+        Badge badge1 = new Badge();
+        Badge badge2 = new Badge();
+        badge1.associerPorteur(porteur);
+        badge2.associerPorteur(porteur);
+
+        // QUAND on supprime le porteur
+        porteur.supprimer();
+
+        // ALORS la liste des badges du porteur devrait être vide
+        assertTrue(porteur.getBadges().isEmpty(), "La liste des badges du porteur devrait être vide après suppression du porteur.");
+    }
+
+    @Test
+    void blocageAutomatiqueTousBadges() {
+        // ÉTANT DONNÉ un porteur avec plusieurs badges associés
+        Porteur porteur = new Porteur("nomPorteur", "prenomPorteur");
+        Badge badge1 = new Badge();
+        Badge badge2 = new Badge();
+        porteur.assignBadge(badge1);
+        porteur.assignBadge(badge2);
+
+        // QUAND on bloque le porteur
+        porteur.blockAllBadges();
+
+        // ALORS tous les badges associés au porteur devraient être bloqués
+        assertTrue(badge1.isBlocked(), "Le badge1 de nomPorteur prenomPorteur est bloqué");
+        assertTrue(badge2.isBlocked(), "Le badge2 de nomPorteur prenomPorteur est bloqué");
+    }
 
 
 
