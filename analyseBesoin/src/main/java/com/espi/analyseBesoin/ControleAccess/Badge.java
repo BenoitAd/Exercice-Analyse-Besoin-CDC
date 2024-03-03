@@ -18,6 +18,7 @@ public class Badge implements Observer {
         this.isBlocked = true;
     }
 
+
     public void debloquer() {
         this.isBlocked = false;
     }
@@ -33,7 +34,7 @@ public class Badge implements Observer {
     public void associer(String nom, String prenom) {
         if (!isBlocked && nom != null && prenom != null) {
             this.porteur = new Porteur(nom, prenom);
-            //this.porteur.addBadge(this);
+
         }
         else if (isBlocked) {
             this.porteur = null;

@@ -392,7 +392,26 @@ class ExoPorteApplicationTests {
         assertTrue(porteur.getBadges().contains(badge2), "Le badge2 devrait être associé au porteur.");
     }
 
+    @Test
+    public void desassociationBadgeBloque() {
+        // ETANT DONNE un badge bloqué
+        Badge badge = new Badge();
+        badge.bloquer();
 
+        // ET un porteur associé à ce badge
+        Porteur porteur = new Porteur("Nom", "Prenom");
+        badge.associerPorteur(porteur);
+
+        // QUAND on tente de bloquer le badge
+        badge.bloquer();
+
+        // ALORS le badge devrait être bloqué
+        assertTrue(badge.isBlocked());
+
+        // ET le porteur associé au badge devrait être automatiquement désassocié
+        assertNull(badge.getPorteur(), "Le porteur associé au badge devrait être null après blocage du badge.");
+        assertFalse(porteur.getBadges().contains(badge), "Le badge devrait être retiré de la liste des badges du porteur après blocage.");
+    }
 
 
 
