@@ -13,7 +13,6 @@ public class Badge implements Observer {
 
     private Porteur porteur;
 
-
     public Badge() {
         this.isBlocked = false;
     }
