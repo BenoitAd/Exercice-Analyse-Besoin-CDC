@@ -522,7 +522,20 @@ class ExoPorteApplicationTests {
         assertTrue(badge1.isBlocked(), "Le badge1 de nomPorteur prenomPorteur est bloqué");
         assertTrue(badge2.isBlocked(), "Le badge2 de nomPorteur prenomPorteur est bloqué");
     }
-
+    @Test
+    public  void badgebloqueassocierporteurdebloque()
+    {
+        //ETANT donné un badge bloqué
+        Badge badge = new Badge();
+        badge.isBlocked();
+        //et qu'on veut associé au porteur
+        Porteur porteur = new Porteur("Jean","dupont");
+        badge.associerPorteur(porteur);
+        //QUAND on essai de le débloquer
+        badge.debloquer();
+        //ALORS le badge est débloqué
+        assertEquals(true, badge.isBlocked());
+    }
 
 
 
