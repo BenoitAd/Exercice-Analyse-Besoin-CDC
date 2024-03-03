@@ -567,7 +567,7 @@ class ExoPorteApplicationTests {
         //QUAND on bloque le premier badge
         ancienbadge.bloquer();
         //ALORS le badge est bloqué
-        assertEquals(false, ancienbadge.isBlocked());
+        assertEquals(true, ancienbadge.isBlocked());
     }
 
 }
