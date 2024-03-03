@@ -342,6 +342,79 @@ class ExoPorteApplicationTests {
 
 
 
+    @Test
+    public void suppressionPorteurAvecMultiplesBadges() {
+        // ÉTANT DONNÉ un porteur associé à plusieurs badges
+        Porteur porteur = new Porteur("Nom", "Prenom");
+        Badge badge1 = new Badge();
+        Badge badge2 = new Badge();
+        badge1.associerPorteur(porteur);
+        badge2.associerPorteur(porteur);
+
+        // QUAND on supprime le porteur
+        porteur.supprimer();
+
+        // ALORS tous les badges associés à ce porteur devraient être désassociés
+        assertNull(badge1.getPorteur());
+        assertNull(badge2.getPorteur());
+    }
+
+    @Test
+    public void desassociationPorteurApresSuppression() {
+        // ÉTANT DONNÉ un badge associé à un porteur
+        Badge badge = new Badge();
+        Porteur porteur = new Porteur("Nom", "Prenom");
+        badge.associerPorteur(porteur);
+
+        // QUAND on supprime le porteur
+        porteur.supprimer();
+
+        // ALORS le porteur associé au badge devrait être null
+        assertNull(badge.getPorteur(), "Le porteur associé au badge devrait être null après suppression du porteur.");
+    }
+
+    @Test
+    public void porteurAssocieAPlusieursBadges() {
+        // ÉTANT DONNÉ un porteur
+        Porteur porteur = new Porteur("Nom", "Prenom");
+
+        // QUAND on associe le porteur à deux badges différents
+        Badge badge1 = new Badge();
+        Badge badge2 = new Badge();
+        badge1.associerPorteur(porteur);
+        badge2.associerPorteur(porteur);
+
+        // ALORS le porteur devrait être associé aux deux badges
+        assertEquals(porteur.getBadges().size(), 2, "Le porteur devrait être associé à deux badges.");
+
+        // ET les badges associés au porteur devraient être les mêmes que ceux associés
+        assertTrue(porteur.getBadges().contains(badge1), "Le badge1 devrait être associé au porteur.");
+        assertTrue(porteur.getBadges().contains(badge2), "Le badge2 devrait être associé au porteur.");
+    }
+
+    @Test
+    public void desassociationBadgeBloque() {
+        // ETANT DONNE un badge bloqué
+        Badge badge = new Badge();
+        badge.bloquer();
+
+        // ET un porteur associé à ce badge
+        Porteur porteur = new Porteur("Nom", "Prenom");
+        badge.associerPorteur(porteur);
+
+        // QUAND on tente de bloquer le badge
+        badge.bloquer();
+
+        // ALORS le badge devrait être bloqué
+        assertTrue(badge.isBlocked());
+
+        // ET le porteur associé au badge devrait être automatiquement désassocié
+        assertNull(badge.getPorteur(), "Le porteur associé au badge devrait être null après blocage du badge.");
+        assertFalse(porteur.getBadges().contains(badge), "Le badge devrait être retiré de la liste des badges du porteur après blocage.");
+    }
+
+
+
 
 
 
