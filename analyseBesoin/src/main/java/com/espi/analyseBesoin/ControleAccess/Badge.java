@@ -15,7 +15,7 @@ public class Badge implements Observer {
 
 
     public Badge() {
-        this.isBlocked = false;
+        this.isBlocked = true;
     }
 
     public void bloquer() {
