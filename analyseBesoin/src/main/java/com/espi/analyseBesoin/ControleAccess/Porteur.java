@@ -41,12 +41,14 @@ public class Porteur extends Observable {
     }
 
     public void assignBadge(Badge badge) {
-
+        badges.add(badge);
     }
 
 
     public void blockAllBadges() {
-
+        for (Badge badge : badges) {
+            badge.setBlocked(true);
+        }
     }
 
 
