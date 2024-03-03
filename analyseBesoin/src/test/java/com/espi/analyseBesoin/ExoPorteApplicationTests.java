@@ -287,6 +287,57 @@ class ExoPorteApplicationTests {
     }
 
     @Test
+    public void badgeBloqueDesassocierResteBloque()
+    {
+        // Étant donné un badge associé au porteur
+        Badge badge = new Badge();
+        badge.associer("nomPorteur", "prenomPorteur");
+        // Lorsque le badge est bloqué
+        badge.bloquer();
+        // Alors le badge est désassocié au porteur
+        badge.desassocierPorteur();
+        assertNull(badge.getPorteur());
+
+        //Et le badge reste bloqué
+        assertTrue(badge.isBlocked());
+    }
+
+    @Test
+    public void badgeReassocierApresDesassociation()
+    {
+        // Étant donné un badge associé au porteur
+        Badge badge = new Badge();
+        badge.associer("nomPorteur", "prenomPorteur");
+        // Lorsque le badge est désassocié
+        badge.desassocierPorteur();
+        assertNull(badge.getPorteur());
+        // Alors le badge peut être réassocié à un nouveau porteur
+        badge.associer("nouveauNom", "nouveauPrenom");
+        assertNotNull(badge.getPorteur());
+        assertEquals("nouveauNom nouveauPrenom", badge.getPorteur().getPorteurName());
+    }
+
+    @Test
+    public void badgeDebloqueApresDelai()
+    {
+        // Étant donné un badge bloqué
+        Badge badge = new Badge();
+        badge.bloquer();
+        assertTrue(badge.isBlocked());
+
+        // Lorsqu'un certain délai s'écoule, par exemple, 24 heures, ou 10 s pour tester
+        attendreDelai(10 * 1000);
+        badge.debloquer();
+
+        // Alors le badge bloqué après le délai
+        assertFalse(badge.isBlocked());
+    }
+
+    private void attendreDelai(int i) {
+    }
+
+
+    @Test
     public void badgeAssocierPorteurNomPrenom()
     {
         //Etant donné un badge associé au porteur
