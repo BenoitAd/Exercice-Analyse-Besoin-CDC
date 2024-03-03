@@ -6,6 +6,10 @@ import java.util.Observer;
 public class Badge implements Observer {
 
     private boolean isBlocked;
+    public void setBlocked(boolean blocked) {
+        isBlocked = blocked;
+    }
+
 
     private Porteur porteur;
 
@@ -15,9 +19,10 @@ public class Badge implements Observer {
     }
 
     public void bloquer() {
-        this.isBlocked = true;
+        if (porteur == null || !porteur.isBlocked()) {
+            this.isBlocked = true;
+        }
     }
-
 
     public void debloquer() {
         this.isBlocked = false;
@@ -42,7 +47,7 @@ public class Badge implements Observer {
     }
 
     public void associerPorteur(Porteur porteur) {
-        if (!isBlocked && porteur != null) {
+        if (!isBlocked && porteur != null && this.porteur == null) {
             this.porteur = porteur;
             porteur.addObserver(this);
             porteur.addBadge(this);

@@ -464,8 +464,17 @@ class ExoPorteApplicationTests {
         assertFalse(porteur.getBadges().contains(badge), "Le badge devrait être retiré de la liste des badges du porteur après blocage.");
     }
 
+    @Test
+    void blocageBadgeSiPorteurBloque() {
+        Porteur porteur = new Porteur("Nom", "Prénom");
+        Badge badge = new Badge();
+        porteur.assignBadge(badge);
 
+        // Bloquer le porteur et vérifier si le badge est bloqué
+        porteur.blockAllBadges();
 
+        assertTrue(badge.isBlocked(), "Le badge devrait rester bloqué.");
+    }
 
 
 
