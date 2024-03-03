@@ -21,7 +21,7 @@ L'objectif principal de ce projet est de spécifier de manière précise les bes
 
 ## Contact
 
-Pour toute question ou clarification concernant le projet, veuillez contacter l'équipe de développement à l'adresse suivante : [adresse e-mail de l'équipe].
+Pour toute question ou clarification concernant le projet, veuillez contacter l'équipe de développement à l'adresse suivante : benoit.augerdubois@ecoles-epsi.net.
 
 ---
 
