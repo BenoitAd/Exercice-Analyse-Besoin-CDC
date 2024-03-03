@@ -373,6 +373,25 @@ class ExoPorteApplicationTests {
         assertNull(badge.getPorteur(), "Le porteur associé au badge devrait être null après suppression du porteur.");
     }
 
+    @Test
+    public void porteurAssocieAPlusieursBadges() {
+        // ÉTANT DONNÉ un porteur
+        Porteur porteur = new Porteur("Nom", "Prenom");
+
+        // QUAND on associe le porteur à deux badges différents
+        Badge badge1 = new Badge();
+        Badge badge2 = new Badge();
+        badge1.associerPorteur(porteur);
+        badge2.associerPorteur(porteur);
+
+        // ALORS le porteur devrait être associé aux deux badges
+        assertEquals(porteur.getBadges().size(), 2, "Le porteur devrait être associé à deux badges.");
+
+        // ET les badges associés au porteur devraient être les mêmes que ceux associés
+        assertTrue(porteur.getBadges().contains(badge1), "Le badge1 devrait être associé au porteur.");
+        assertTrue(porteur.getBadges().contains(badge2), "Le badge2 devrait être associé au porteur.");
+    }
+
 
 
 
