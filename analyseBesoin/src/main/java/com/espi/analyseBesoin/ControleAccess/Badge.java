@@ -44,8 +44,7 @@ public class Badge implements Observer {
         if (!isBlocked && porteur != null) {
             this.porteur = porteur;
             porteur.addObserver(this);
-            porteur.getBadges();
-
+            porteur.addBadge(this);
         }
         else if (isBlocked) {
             this.porteur = null;
